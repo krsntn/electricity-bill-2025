@@ -8,7 +8,7 @@ const { label, cost, progress } = defineProps<{
 
 <template>
   <div
-    class="relative bg-zinc-100 py-2 flex-1 flex items-center justify-center text-[0.65rem] text-zinc-700 overflow-hidden"
+    class="relative bg-zinc-100 py-2 flex-1 flex items-center justify-center text-[0.5rem] md:text-[0.65rem] text-zinc-700 overflow-hidden"
   >
     <div
       class="absolute left-0 top-0 bg-blue-200 h-full"

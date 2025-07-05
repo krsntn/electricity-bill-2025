@@ -30,7 +30,7 @@ async function onSubmit(event: FormSubmitEvent<typeof formData.value>) {
     <UFormField
       label="Total Consumption (kWh)"
       name="consumptionKwh"
-      class="flex justify-between items-center"
+      class="md:flex md:justify-between md:items-center"
     >
       <UInputNumber v-model="formData.consumptionKwh" class="w-full" />
     </UFormField>

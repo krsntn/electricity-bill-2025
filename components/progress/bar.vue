@@ -2,51 +2,62 @@
 const { percentage, tiers } = defineProps<{
   percentage: number;
   tiers: {
-    [key: string]: {
-      kwh: number;
-      percentage: number;
-    };
-  };
+    kwh: number;
+    percentage: number;
+    cost: number;
+  }[];
 }>();
 </script>
 
 <template>
   <div class="relative">
     <!-- Tier Labels -->
-    <div class="flex justify-evenly mb-1 text-xs text-zinc-400">
-      <span>1 - 200kWh</span>
-      <span>201 - 300kWh</span>
-      <span>301 - 600kWh</span>
-      <span>601 - 900kWh</span>
-      <span>&gt; 900kWh</span>
+    <div
+      class="flex justify-evenly mb-1 text-[0.6rem] md:text-xs text-zinc-400"
+    >
+      <span class="flex-1 flex justify-center items-center text-center"
+        >1 - 200kWh</span
+      >
+      <span class="flex-1 flex justify-center items-center text-center"
+        >201 - 300kWh</span
+      >
+      <span class="flex-1 flex justify-center items-center text-center"
+        >301 - 600kWh</span
+      >
+      <span class="flex-1 flex justify-center items-center text-center"
+        >601 - 900kWh</span
+      >
+      <span class="flex-1 flex justify-center items-center text-center"
+        >&gt; 900kWh</span
+      >
     </div>
 
     <!-- Main Progress Bar -->
     <div class="relative rounded-full flex overflow-hidden">
       <ProgressTier
-        :label="`${tiers.tier1.kwh}kWh x RM0.218`"
-        cost="RM43.60"
-        :progress="tiers.tier1.percentage"
+        :label="`${tiers[0].kwh}kWh x RM0.218`"
+        :cost="`RM${tiers[0].cost.toFixed(2)}`"
+        :progress="tiers[0].percentage"
       />
       <ProgressTier
-        :label="`${tiers.tier2.kwh}kWh x RM0.334`"
-        cost="RM26.05"
-        :progress="tiers.tier2.percentage"
+        :label="`${tiers[1].kwh}kWh x RM0.334`"
+        :cost="`RM${tiers[1].cost.toFixed(2)}`"
+        :progress="tiers[1].percentage"
       />
       <ProgressTier
-        :label="`${tiers.tier3.kwh}kWh x RM0.516`"
-        cost="RM0.00"
-        :progress="tiers.tier3.percentage"
+        :label="`${tiers[2].kwh}kWh x RM0.516`"
+        :cost="`RM${tiers[2].cost.toFixed(2)}`"
+        :progress="tiers[2].percentage"
       />
       <ProgressTier
-        :label="`${tiers.tier4.kwh}kWh x RM0.546`"
-        cost="RM0.00"
-        :progress="tiers.tier4.percentage"
+        :label="`${tiers[3].kwh}kWh x RM0.546`"
+        :cost="`RM${tiers[3].cost.toFixed(2)}`"
+        :progress="tiers[3].percentage"
       />
       <ProgressTier
-        :label="`${tiers.tier5.kwh}kWh x RM0.571`"
-        cost="RM0.00"
-        :progress="tiers.tier5.percentage"
+        :label="`${tiers[4].kwh}kWh x RM0.571`"
+        :cost="`RM${tiers[4].cost.toFixed(2)}`"
+        :progress="tiers[4].percentage"
       />
 
       <!-- Vertical Dashed Lines -->

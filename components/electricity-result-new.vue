@@ -24,6 +24,13 @@ const totalIncentive = computed(() => {
   }
   return 0;
 });
+
+const width = ref(0);
+onMounted(() => {
+  window.addEventListener("resize", () => {
+    width.value = window.innerWidth;
+  });
+});
 </script>
 
 <template>
@@ -46,6 +53,18 @@ const totalIncentive = computed(() => {
         :percentage="percentage"
         :incentive="totalIncentive"
       />
+
+      <div v-if="width <= 768" class="mt-2">
+        <ProgressNewBillDetails
+          :consumption="consumption"
+          :energy-bill="energyBill"
+          :capacity-bill="capacityBill"
+          :network-bill="networkBill"
+          :retail-bill="consumption > 600 ? rates.Small.RetailCharges : 0"
+          :percentage="percentage"
+          :incentive="totalIncentive"
+        />
+      </div>
     </div>
   </div>
 </template>

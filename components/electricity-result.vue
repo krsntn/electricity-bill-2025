@@ -5,17 +5,16 @@ const totalBill = computed(() => calculateTierUsage(consumption.value));
 const percentage = ref(0);
 
 const tiers: {
-  [key: string]: {
-    kwh: number;
-    percentage: number;
-  };
-} = reactive({
-  tier1: { kwh: 0, percentage: 0 },
-  tier2: { kwh: 0, percentage: 0 },
-  tier3: { kwh: 0, percentage: 0 },
-  tier4: { kwh: 0, percentage: 0 },
-  tier5: { kwh: 0, percentage: 0 },
-});
+  kwh: number;
+  percentage: number;
+  cost: number;
+}[] = reactive([
+  { kwh: 0, percentage: 0, cost: 0 },
+  { kwh: 0, percentage: 0, cost: 0 },
+  { kwh: 0, percentage: 0, cost: 0 },
+  { kwh: 0, percentage: 0, cost: 0 },
+  { kwh: 0, percentage: 0, cost: 0 },
+]);
 
 const props = defineProps<{
   totalUsage: number;
@@ -48,31 +47,28 @@ const calculateTierUsage = (usage: number) => {
 
     for (let i = 0; i < tierStandard.length; i++) {
       const tier = tierStandard[i];
-      const tierKey = `tier${i + 1}`;
       const tierCapacity = tier.max - tier.min + 1;
 
       if (currentRemainingUsage >= tierCapacity) {
-        tiers[tierKey].percentage = 100;
-        tiers[tierKey].kwh = tierCapacity;
+        tiers[i].percentage = 100;
+        tiers[i].kwh = tierCapacity;
         currentRemainingUsage -= tierCapacity;
       } else if (currentRemainingUsage > 0) {
-        tiers[tierKey].percentage =
-          (currentRemainingUsage / tierCapacity) * 100;
-        tiers[tierKey].kwh = currentRemainingUsage;
+        tiers[i].percentage = (currentRemainingUsage / tierCapacity) * 100;
+        tiers[i].kwh = currentRemainingUsage;
         currentRemainingUsage = 0;
       } else {
-        tiers[tierKey].percentage = 0;
-        tiers[tierKey].kwh = 0;
+        tiers[i].percentage = 0;
+        tiers[i].kwh = 0;
       }
     }
   } else if (usage > tierStandard[tierStandard.length - 2].max) {
     for (let i = 0; i <= tierStandard.length - 2; i++) {
-      const tierKey = `tier${i + 1}`;
-      tiers[tierKey].percentage = 100;
-      tiers[tierKey].kwh = tierStandard[i].max - tierStandard[i].min + 1;
+      tiers[i].percentage = 100;
+      tiers[i].kwh = tierStandard[i].max - tierStandard[i].min + 1;
     }
-    tiers.tier5.percentage = 50;
-    tiers.tier5.kwh = usage - tierStandard[tierStandard.length - 2].max;
+    tiers[4].percentage = 50;
+    tiers[4].kwh = usage - tierStandard[tierStandard.length - 2].max;
   }
 
   percentage.value =

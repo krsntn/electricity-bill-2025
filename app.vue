@@ -24,8 +24,10 @@ function setConsumptionKwh(value: number) {
 <template>
   <UApp>
     <div class="min-h-dvh flex flex-col justify-between">
-      <div class="flex-1 max-w-xl m-auto py-4">
-        <h1 class="text-xl font-bold">Predict Your Monthly Electricity Bill</h1>
+      <div class="flex-1 md:w-xl m-auto py-4 px-2">
+        <h1 class="text-xl font-bold mb-2">
+          Predict Your Monthly Electricity Bill
+        </h1>
         <UTabs :items="tabs" class="mb-12">
           <template #kwh>
             <KwhForm
@@ -39,15 +41,19 @@ function setConsumptionKwh(value: number) {
           </template>
         </UTabs>
 
-        <UAccordion :items="items" type="multiple">
+        <UAccordion
+          :items="items"
+          type="multiple"
+          class="border-b border-default"
+        >
           <template #oldCalc>
-            <div class="px-12 my-4">
+            <div class="px-10 my-4">
               <ElectricityResult :total-usage="consumptionKwh" />
             </div>
           </template>
         </UAccordion>
 
-        <h2 class="flex items-center gap-1.5 text-sm">
+        <h2 class="py-3.5 flex items-center gap-1.5 text-sm">
           <UIcon name="i-fe-bolt" class="w-5 h-5" />New Calculation (1 July
           2025)
         </h2>

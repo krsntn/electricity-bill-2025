@@ -18,7 +18,7 @@ const { percentage, energyCost, capacityCost, networkCost, retailCost } =
 
     <div class="rounded-full flex overflow-hidden">
       <div
-        class="relative bg-zinc-100 py-1 flex-1 flex items-center justify-center text-xs text-zinc-700 overflow-hidden"
+        class="relative bg-zinc-100 py-1 flex-1 flex items-center justify-center text-[0.55rem] md:text-xs text-zinc-700 overflow-hidden"
       >
         <div
           class="absolute left-0 top-0 bg-blue-200 h-full"
