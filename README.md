@@ -1,75 +1,10 @@
-# Nuxt Minimal Starter
+# Electricity Bill Estimator (July 2025 Formula)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project is a web application designed to help users estimate their monthly electricity bills. It incorporates the latest electricity tariff formula introduced by the government in July 2025, ensuring accurate and up-to-date calculations.
 
-## Setup
+## Features
 
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- **Accurate Estimation**: Calculates electricity bills based on the official government formula effective July 2025.
+- **User-Friendly Interface**: Simple and intuitive design for easy input of consumption data.
+- **Quick Results**: Get an estimated bill breakdown instantly.
+- **Nuxt.js Powered**: Built with Nuxt.js for a robust and performant web experience.
