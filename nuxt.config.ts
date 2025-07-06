@@ -14,6 +14,15 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
+  app: {
+    head: {
+      title: "Predict Your Monthly Electricity Bill", // default fallback title
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
   routeRules: {
     "/": { prerender: true },
   },

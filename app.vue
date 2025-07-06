@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import type { TabsItem, AccordionItem } from "@nuxt/ui";
 
+useSeoMeta({
+  title: "Predict Your Monthly Electricity Bill",
+  ogTitle: "Predict Your Monthly Electricity Bill",
+  description:
+    "Accurately predict your monthly electricity bill with our powerful tool. Understand your consumption patterns and save money on your energy costs.",
+  ogDescription:
+    "Accurately predict your monthly electricity bill with our powerful tool. Understand your consumption patterns and save money on your energy costs.",
+  // ogImage: "https://example.com/image.png",
+  twitterCard: "summary_large_image",
+});
+
 const tabs: TabsItem[] = [
   { label: "kilowatt-hour", icon: "mdi:lightning-bolt", slot: "kwh" as const },
   { label: "watt", icon: "mdi:lightning-bolt", slot: "w" as const },
