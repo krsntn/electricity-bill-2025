@@ -48,6 +48,11 @@ const { percentage, energyCost, capacityCost, networkCost, retailCost } =
               kWh > 600kWh, RM{{ retailCost }}
             </span>
           </div>
+          <div class="flex justify-between">
+            <span class="font-bold">AFA</span>
+            <span class="mr-1">:</span>
+            <span class="flex-1 text-right"> kWh > 600kWh, -RM0.0145/kWh </span>
+          </div>
         </div>
       </div>
     </div>

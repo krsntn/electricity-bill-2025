@@ -7,7 +7,9 @@ interface BillDetailsProps {
   capacityBill: number;
   networkBill: number;
   retailBill: number;
+  afaBill: number;
   incentive: number;
+  serviceTax: number;
 }
 
 const props = defineProps<BillDetailsProps>();
@@ -17,8 +19,10 @@ const totalBill = computed(
     props.energyBill +
     props.capacityBill +
     props.networkBill +
-    props.retailBill -
-    props.incentive,
+    props.afaBill +
+    props.retailBill +
+    props.incentive +
+    props.serviceTax,
 );
 
 type IncentiveInfo = {
@@ -142,11 +146,39 @@ const columns: TableColumn<IncentiveInfo>[] = [
       <span class="font-bold">Network Charges:</span>
       <span class="flex-1 text-right">RM{{ networkBill.toFixed(2) }}</span>
     </div>
-    <div v-show="retailBill > 0" class="flex justify-between">
+    <div class="flex justify-between">
       <span class="font-bold">Retail Charges:</span>
       <span class="flex-1 text-right">RM{{ retailBill.toFixed(2) }}</span>
     </div>
-    <div v-show="consumption <= 1000" class="flex justify-between">
+    <div class="flex justify-between">
+      <UModal title="Automatic Fuel Adjustment (AFA)">
+        <span class="font-bold cursor-pointer">AFA</span>
+        <template #body>
+          <div class="mb-3">
+            The Automatic Fuel Adjustment (AFA) mechanism works by making
+            electricity tariffs more transparent, fair, and responsive to actual
+            market conditions. It allows automatic monthly tariff adjustment
+            based on current fuel prices and foreign exchange rates.
+          </div>
+          <div class="mb-1">This means:</div>
+          <ul class="pl-2 list-disc list-inside mb-3">
+            <li>You get a more accurate reflection of energy costs</li>
+            <li>Smaller and regular adjustments that avoid price shocks</li>
+            <li>It encourages smarter and more efficient energy usage</li>
+          </ul>
+          <div class="mb-3">
+            Overall, the AFA mechanism helps create a more stable and
+            predictable electricity pricing system for consumers.
+          </div>
+          <div>This simulation is using -0.0145/kWh as the AFA rate.</div>
+        </template>
+      </UModal>
+      <span class="mr-1">:</span>
+      <span class="flex-1 text-right">{{
+        `${afaBill < 0 ? "-" : ""}RM${Math.abs(afaBill).toFixed(2)}`
+      }}</span>
+    </div>
+    <div class="flex justify-between">
       <UModal title="Energy Efficiency Incentive">
         <span class="font-bold cursor-pointer">
           Energy Efficiency Incentive
@@ -156,7 +188,26 @@ const columns: TableColumn<IncentiveInfo>[] = [
         </template>
       </UModal>
       <span class="mr-1">:</span>
-      <span class="flex-1 text-right">-RM{{ incentive.toFixed(2) }}</span>
+      <span class="flex-1 text-right">{{
+        `${incentive < 0 ? "-" : ""}RM${Math.abs(incentive).toFixed(2)}`
+      }}</span>
+    </div>
+    <div class="flex justify-between">
+      <UModal title="Service Tax">
+        <span class="font-bold cursor-pointer">Service Tax</span>
+        <template #body>
+          <div class="mb-3">
+            If you use more than 600 kWh of electricity and your billing period
+            is 28 days or longer, an 8% service tax is added to your TNB
+            electricity bill for the consumption 601 kWh and above. This is
+            based on the Service Tax (Rate of Tax) (Amendment) Order 2024.
+            However, if the billing period is less than 28 days, your total
+            consumption is subject to Service Tax.
+          </div>
+        </template>
+      </UModal>
+      <span class="mr-1">:</span>
+      <span class="flex-1 text-right">RM{{ serviceTax.toFixed(2) }}</span>
     </div>
 
     <div class="border-t border-zinc-700 text-right">

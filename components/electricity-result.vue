@@ -19,8 +19,8 @@ const tiers: {
 const props = defineProps<{
   totalUsage: number;
 }>();
-// Calculate tier usage and costs
 
+// Calculate tier usage and costs
 const calculateTierUsage = (usage: number) => {
   const tierStandard = [
     { min: 1, max: 200, rate: 0.218 },
@@ -33,10 +33,11 @@ const calculateTierUsage = (usage: number) => {
   let remainingUsage = usage;
   let totalCost = 0;
 
-  tierStandard.forEach((tier) => {
+  tierStandard.forEach((tier, idx) => {
     if (remainingUsage > 0) {
       const tierUsage = Math.min(remainingUsage, tier.max - tier.min + 1);
       const tierCost = tierUsage * tier.rate;
+      tiers[idx].cost = tierCost;
       totalCost += tierCost;
       remainingUsage -= tierUsage;
     }

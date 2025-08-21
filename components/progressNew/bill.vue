@@ -5,8 +5,10 @@ const props = defineProps<{
   capacityBill: number;
   networkBill: number;
   retailBill: number;
+  afaBill: number;
   percentage: number;
   incentive: number;
+  serviceTax: number;
 }>();
 
 const width = ref(0);
