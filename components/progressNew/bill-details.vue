@@ -132,7 +132,7 @@ const columns: TableColumn<IncentiveInfo>[] = [
 
 <template>
   <div
-    class="flex flex-col gap-1 justify-center text-xs md:text-sm border border-dashed border-orange-400 bg-zinc-800 text-white px-4 py-2 rounded"
+    class="flex flex-col gap-1 justify-center text-xs md:text-sm border border-dashed border-orange-400 bg-zinc-200 dark:bg-zinc-800 px-4 py-2 rounded"
   >
     <div class="flex justify-between">
       <span class="font-bold">Energy Charges:</span>
@@ -210,8 +210,6 @@ const columns: TableColumn<IncentiveInfo>[] = [
       <span class="flex-1 text-right">RM{{ serviceTax.toFixed(2) }}</span>
     </div>
 
-    <div class="border-t border-zinc-700 text-right">
-      RM{{ totalBill.toFixed(2) }}
-    </div>
+    <div class="border-t text-right">RM{{ totalBill.toFixed(2) }}</div>
   </div>
 </template>
